@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PacmanController : MonoBehaviour
 {
     // Start is called before the first frame update
-
-    private int score = 0;
-    public TextMeshProUGUI scoreText;
-    public GhostController[] ghosts;
-    public GameObject cherry; 
     public float speed = 5f;
     public float rotationSpeed = 20f;
+    public GameObject cherry;
+    public GhostController[] ghosts;
+    public Button resetButton;
+    public TextMeshProUGUI scoreText;
+    public AudioSource audioSource;
+    public AudioSource audioCollision;
+    public AudioSource audioWinner;
+    public AudioSource audioEnviroment;
+   /* public Transform limit1; // Referencia al objeto Limit1
+    public Transform limit2; // Referencia al objeto Limit2
+    public float teleportOffset = 1.0f; //distancia adelante del teleport]*/
+
+
+    private int score = 0;
+
 
     void Start()
     {
@@ -38,8 +49,9 @@ public class PacmanController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ghost"))
         {
             // Pausar el juego
-            Debug.Log(score);
-            scoreText.text = "Game Over - Puntaje:" + score;
+            
+            audioCollision.Play();
+            scoreText.text = "Game Over - Score:" + score;
 
             this.enabled = false;
 
@@ -49,7 +61,7 @@ public class PacmanController : MonoBehaviour
                 ghost.enabled = false;
             }
 
-
+            resetButton.gameObject.SetActive(true);
         }
     }
 
@@ -61,6 +73,7 @@ public class PacmanController : MonoBehaviour
         if (other.gameObject.CompareTag("Dot"))
         {
             // Incrementar el contador de puntos
+            
             score++;
 
             // Mostrar el contador de puntos en la consola
@@ -68,9 +81,9 @@ public class PacmanController : MonoBehaviour
 
             // Actualizar el texto en la interfaz de usuario
             scoreText.text = "Score: " + score;
-            
 
 
+            audioSource.Play();
             // Destruir el punto
             Destroy(other.gameObject);
            
@@ -80,14 +93,29 @@ public class PacmanController : MonoBehaviour
                 cherry.SetActive(true);
             }
 
-
-
         }
-
-        if (other.gameObject.CompareTag("Cherry"))
+        /*
+        if (other.gameObject.CompareTag("Limit1"))
         {
+            // Teletransportar a Pac-Man a Limit2
+            transform.position = limit2.position + limit2.right * teleportOffset; 
+        }
+        // Verificar si la colisión fue con Limit2
+        else if (other.gameObject.CompareTag("Limit2"))
+        {
+            // Teletransportar a Pac-Man a Limit1
+            transform.position = limit1.position - limit1.right * teleportOffset;
+        }
+        */
+        if (other.gameObject.CompareTag("Cherry"))
+        {   //para la música
+            audioEnviroment.Stop();
             // Incrementar el contador de puntos por 100
             score += 100;
+
+            //Sonido de ganar
+            audioWinner.Play();
+            
 
             // Actualizar el texto en la interfaz de usuario
             scoreText.text = "Score: " + score;
@@ -106,6 +134,8 @@ public class PacmanController : MonoBehaviour
             {
                 ghost.enabled = false;
             }
+
+            resetButton.gameObject.SetActive(true);
         }
     }
 

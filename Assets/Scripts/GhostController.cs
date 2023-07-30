@@ -8,7 +8,7 @@ public class GhostController : MonoBehaviour
     public float decisionTime = 1.0f;
     private Vector3 direction;
     private int layerMask;
-
+ 
     private void Start()
     {
         // Obtener el número de la capa Wall
@@ -60,6 +60,7 @@ public class GhostController : MonoBehaviour
                 yield return null;
             }
 
+            
             // Esperar un tiempo antes de decidir una nueva dirección
             yield return new WaitForSeconds(decisionTime);
         }

@@ -8,6 +8,8 @@ TagManager:
   - Ghost
   - Dot
   - Cherry
+  - Limit1
+  - Limit2
   layers:
   - Default
   - TransparentFX
