@@ -17,9 +17,13 @@ public class PacmanController : MonoBehaviour
     public AudioSource audioCollision;
     public AudioSource audioWinner;
     public AudioSource audioEnviroment;
-   /* public Transform limit1; // Referencia al objeto Limit1
-    public Transform limit2; // Referencia al objeto Limit2
-    public float teleportOffset = 1.0f; //distancia adelante del teleport]*/
+    public AudioSource audioExplosion;
+    public GameObject explosion;
+    public GameObject meshPacman;
+
+    /* public Transform limit1; // Referencia al objeto Limit1
+     public Transform limit2; // Referencia al objeto Limit2
+     public float teleportOffset = 1.0f; //distancia adelante del teleport]*/
 
 
     private int score = 0;
@@ -49,19 +53,28 @@ public class PacmanController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ghost"))
         {
             // Pausar el juego
-            
+            audioEnviroment.Stop();
             audioCollision.Play();
+            
+            
             scoreText.text = "Game Over - Score:" + score;
 
-            this.enabled = false;
+            
 
             // Desactivar los scripts de movimiento de los fantasmas
             foreach (GhostController ghost in ghosts)
             {
                 ghost.enabled = false;
             }
+            audioExplosion.Play();
+            Instantiate(explosion, transform.position, transform.rotation);
+            
 
+            //this.enabled = false;
+
+            
             resetButton.gameObject.SetActive(true);
+            meshPacman.GetComponent<MeshRenderer>().enabled = false;
         }
     }
 
