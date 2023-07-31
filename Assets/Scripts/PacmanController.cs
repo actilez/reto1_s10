@@ -20,15 +20,13 @@ public class PacmanController : MonoBehaviour
     public AudioSource audioExplosion;
     public GameObject explosion;
     public GameObject meshPacman;
-
+    public int score = 0;
     /* public Transform limit1; // Referencia al objeto Limit1
      public Transform limit2; // Referencia al objeto Limit2
      public float teleportOffset = 1.0f; //distancia adelante del teleport]*/
 
 
-    private int score = 0;
-
-
+    
     void Start()
     {
         
@@ -57,7 +55,7 @@ public class PacmanController : MonoBehaviour
             audioCollision.Play();
             
             
-            scoreText.text = "Game Over - Score:" + score;
+            scoreText.text = "Score: " + score +" ¡GAME OVER! ";
 
             
 
@@ -70,11 +68,12 @@ public class PacmanController : MonoBehaviour
             Instantiate(explosion, transform.position, transform.rotation);
             
 
-            //this.enabled = false;
+            
 
             
             resetButton.gameObject.SetActive(true);
-            meshPacman.GetComponent<MeshRenderer>().enabled = false;
+            meshPacman.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            this.enabled = false;
         }
     }
 
@@ -90,7 +89,7 @@ public class PacmanController : MonoBehaviour
             score++;
 
             // Mostrar el contador de puntos en la consola
-            Debug.Log("Score: " + score);
+            //Debug.Log("Score: " + score);
 
             // Actualizar el texto en la interfaz de usuario
             scoreText.text = "Score: " + score;
@@ -134,7 +133,7 @@ public class PacmanController : MonoBehaviour
             scoreText.text = "Score: " + score;
 
             // Mostrar el mensaje de "¡Ganaste!"
-            scoreText.text = "¡WINNER! Final Score: " + score;
+            scoreText.text = "Score: "+ score +" ¡WINNER! ";
 
             // Destruir Cherry
             Destroy(other.gameObject);
