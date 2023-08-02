@@ -98,6 +98,7 @@
 -define:ENABLE_TIMELINE
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"J:/GitHub/reto1_s10/Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
@@ -293,13 +294,17 @@
 -r:"J:/Program Files/Unity/2021.3.24f1/2021.3.28f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Transactions.dll"
 -r:"J:/Program Files/Unity/2021.3.24f1/2021.3.28f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll"
 -r:"J:/Program Files/Unity/2021.3.24f1/2021.3.28f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Postprocessing.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.TextMeshPro.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Timeline.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.Core.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/UnityEngine.UI.ref.dll"
-"Assets/AurynSky/Gems Ultimate Pack/Scripts/AnimationScript.cs"
+"Assets/Particle Ribbon by Moonflower Carnivore/Scripts/randomParticleRotation.cs"
+"Assets/Particle Ribbon by Moonflower Carnivore/Scripts/ReverseNormals.cs"
+"Assets/Particle Ribbon by Moonflower Carnivore/Scripts/rotation.cs"
+"Assets/Scripts/AnimationScript.cs"
 "Assets/Scripts/asdasdasd.cs"
 "Assets/Scripts/ButtonHandler.cs"
 "Assets/Scripts/CameraCherry.cs"
@@ -309,6 +314,7 @@
 "Assets/Scripts/Move.cs"
 "Assets/Scripts/PacmanController.cs"
 "Assets/Scripts/TeleportController.cs"
+"Assets/Win.cs"
 -langversion:9.0
 
 /deterministic

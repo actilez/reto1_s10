@@ -20,21 +20,27 @@ public class PacmanController : MonoBehaviour
     public AudioSource audioExplosion;
     public GameObject explosion;
     public GameObject meshPacman;
+    public GameObject pacmanWinner;
     public int score = 0;
+    
+    
+
     /* public Transform limit1; // Referencia al objeto Limit1
      public Transform limit2; // Referencia al objeto Limit2
      public float teleportOffset = 1.0f; //distancia adelante del teleport]*/
 
 
-    
+
     void Start()
     {
-        
+           
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -54,7 +60,7 @@ public class PacmanController : MonoBehaviour
             audioEnviroment.Stop();
             audioCollision.Play();
             
-            
+            //Puntaje y MENSAJE
             scoreText.text = "Score: " + score +" ¡GAME OVER! ";
 
             
@@ -65,14 +71,9 @@ public class PacmanController : MonoBehaviour
                 ghost.enabled = false;
             }
             audioExplosion.Play();
-            Instantiate(explosion, transform.position, transform.rotation);
-            
-
-            
-
-            
-            resetButton.gameObject.SetActive(true);
             meshPacman.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            Instantiate(explosion, transform.position, transform.rotation);           
+            resetButton.gameObject.SetActive(true);
             this.enabled = false;
         }
     }
@@ -106,30 +107,18 @@ public class PacmanController : MonoBehaviour
             }
 
         }
-        /*
-        if (other.gameObject.CompareTag("Limit1"))
-        {
-            // Teletransportar a Pac-Man a Limit2
-            transform.position = limit2.position + limit2.right * teleportOffset; 
-        }
-        // Verificar si la colisión fue con Limit2
-        else if (other.gameObject.CompareTag("Limit2"))
-        {
-            // Teletransportar a Pac-Man a Limit1
-            transform.position = limit1.position - limit1.right * teleportOffset;
-        }
-        */
+     
         if (other.gameObject.CompareTag("Cherry"))
         {   //para la música
             audioEnviroment.Stop();
-            // Incrementar el contador de puntos por 100
-            score += 100;
-
+            
+            
             //Sonido de ganar
             audioWinner.Play();
             
 
-            // Actualizar el texto en la interfaz de usuario
+
+            // Actualizar el texto en la interfaz de usuari o
             scoreText.text = "Score: " + score;
 
             // Mostrar el mensaje de "¡Ganaste!"
@@ -138,8 +127,10 @@ public class PacmanController : MonoBehaviour
             // Destruir Cherry
             Destroy(other.gameObject);
 
-            //descativa pacman
+            //descativa pacman y quita el mesh
+            meshPacman.GetComponent<SkinnedMeshRenderer>().enabled = false;
             this.enabled = false;
+            pacmanWinner.SetActive(true);
 
             // Desactivar los scripts de movimiento de los fantasmas
             foreach (GhostController ghost in ghosts)
@@ -148,6 +139,7 @@ public class PacmanController : MonoBehaviour
             }
 
             resetButton.gameObject.SetActive(true);
+
         }
     }
 
